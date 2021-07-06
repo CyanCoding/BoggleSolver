@@ -1,5 +1,28 @@
 package main
 
+import (
+	"math/rand"
+	"time"
+)
+
+func RollDice() (dice [4][4]string) {
+	allDiceValues := FillDice()
+
+	rand.Seed(time.Now().UnixNano())
+
+	for i := 0; i < 4; i++ {
+		for j := 0; j < 4; j++ {
+			// Gets a random number between 0 and 6
+			randomNumber := rand.Intn(6)
+			value := allDiceValues[i][randomNumber]
+
+			dice[i][j] = value
+		}
+	}
+
+	return
+}
+
 func FillDice() (d [16][6]string) {
 	d[0][0] = "z"
 	d[0][1] = "l"
