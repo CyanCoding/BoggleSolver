@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 )
@@ -137,4 +138,11 @@ func FillDice() (d [16][6]string) {
 	d[15][5] = "a"
 
 	return
+}
+
+func PrintDice(dice [4][4]string) {
+	fmt.Println(dice[0][0], dice[0][1], dice[0][2], dice[0][3])
+	fmt.Println(dice[1][0], dice[1][1], dice[1][2], dice[1][3])
+	fmt.Println(dice[2][0], dice[2][1], dice[2][2], dice[2][3])
+	fmt.Println(dice[3][0], dice[3][1], dice[3][2], dice[3][3])
 }
