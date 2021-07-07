@@ -7,7 +7,8 @@ func main() {
 
 	fmt.Println("Welcome to the boggle solver/computer version!")
 	fmt.Println("Please choose one of the following")
-	fmt.Println("Solo mode (1), computer solve (2), input board (3)\n")
+	fmt.Println("Solo mode (1), computer solve (2), input board (3)")
+	fmt.Println()
 	fmt.Print("Action > ")
 
 	var action int = 2
@@ -19,7 +20,9 @@ func main() {
 	}
 
 	if action < 3 {
-		fmt.Println("Below is the board\n")
+		fmt.Println("Below is the board")
+		fmt.Println()
 		PrintDice(dice)
+		fmt.Println()
 	}
 }
