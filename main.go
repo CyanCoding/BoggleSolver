@@ -1,8 +1,31 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"strings"
+)
+
+const wordsFile string = "words.txt"
+
+func ReadWordsFile() []string {
+	byteData, err := ioutil.ReadFile(wordsFile)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	text := string(byteData)
+	words := strings.Fields(text)
+
+	return words
+}
 
 func main() {
+	var words []string
+	go func() {
+		words = ReadWordsFile()
+	}()
 	dice := RollDice()
 
 	fmt.Println("Welcome to the boggle solver/computer version!")
