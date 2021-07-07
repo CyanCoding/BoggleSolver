@@ -9,10 +9,9 @@ import (
 func RollDice() (dice [4][4]string) {
 	allDiceValues := FillDice()
 
-	rand.Seed(time.Now().UnixNano())
-
 	for i := 0; i < 4; i++ {
 		for j := 0; j < 4; j++ {
+			rand.Seed(time.Now().UnixNano())
 			// Gets a random number between 0 and 6
 			randomNumber := rand.Intn(6)
 			value := allDiceValues[i][randomNumber]
