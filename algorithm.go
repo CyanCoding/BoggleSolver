@@ -4,7 +4,7 @@ import "fmt"
 
 func TestWord(currentWord string) int {
 	for i := 0; i < len(words); i++ {
-		if len(words[i]) != len(currentWord) { // Word is not proper length
+		if len(words[i]) < len(currentWord) { // Word is not proper length
 			continue
 		}
 
