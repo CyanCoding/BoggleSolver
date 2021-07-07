@@ -46,7 +46,7 @@ func FindNearby(board [4][4]string, x int, y int, currentWord string) {
 
 	// Here we define the rules of the game.
 	// No words under three letters!
-	if len(currentWord) < 3 {
+	if len(currentWord) >= 3 {
 		wordResult := TestWord(currentWord)
 		switch wordResult {
 		case 0: // The word is valid

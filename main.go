@@ -63,6 +63,8 @@ func main() {
 		if action == 2 {
 			fmt.Println("Finding matches...")
 			FindNearby(dice, 0, 0, "")
+
+			fmt.Println("Ran ", searches, " times")
 		}
 	}
 }
