@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"strings"
 	"time"
 )
 
@@ -137,6 +138,51 @@ func FillDice() (d [16][6]string) {
 	d[15][5] = "a"
 
 	return
+}
+
+func ManuallySetDice() (dice [4][4]string) {
+	var row1 string
+	var row2 string
+	var row3 string
+	var row4 string
+
+	fmt.Println("Fill in each of the four rows below with spaces between letters")
+	fmt.Print("(1) > ")
+	fmt.Scanln(&row1)
+	fmt.Print("(2) > ")
+	fmt.Scanln(&row2)
+	fmt.Print("(3) > ")
+	fmt.Scanln(&row3)
+	fmt.Print("(4) > ")
+	fmt.Scanln(&row4)
+
+	fmt.Println()
+	row1Array := strings.Fields(row1)
+	row2Array := strings.Fields(row2)
+	row3Array := strings.Fields(row3)
+	row4Array := strings.Fields(row4)
+
+	dice[0][0] = row1Array[0]
+	dice[0][1] = row1Array[1]
+	dice[0][2] = row1Array[2]
+	dice[0][3] = row1Array[3]
+
+	dice[1][0] = row2Array[0]
+	dice[1][1] = row2Array[1]
+	dice[1][2] = row2Array[2]
+	dice[1][3] = row2Array[3]
+
+	dice[2][0] = row3Array[0]
+	dice[2][1] = row3Array[1]
+	dice[2][2] = row3Array[2]
+	dice[2][3] = row3Array[3]
+
+	dice[3][0] = row4Array[0]
+	dice[3][1] = row4Array[1]
+	dice[3][2] = row4Array[2]
+	dice[3][3] = row4Array[3]
+
+	return dice
 }
 
 func PrintDice(dice [4][4]string) {
