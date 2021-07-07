@@ -19140,8 +19140,6 @@ ependyma
 epenthesis
 epenthetic
 epergne
-epha
-ephah
 ephedra
 ephedrine
 ephemera
@@ -40746,7 +40744,6 @@ phenytoin
 pheochromocytoma
 pheresis
 pheromone
-phi
 phial
 philadelphus
 philander
