@@ -14,6 +14,7 @@ const wordsFile string = "dictionary.txt"
 var wordsFound int64
 var searches int64
 var words []string // Word list (about 436k)
+var wordsFoundList []string
 
 func ReadWordsFile() []string {
 	byteData, err := ioutil.ReadFile(wordsFile)
@@ -53,6 +54,7 @@ func main() {
 	}
 
 	group.Wait() // Make sure the word compilation has finished
+	wordsFoundList = make([]string, 0)
 
 	if action < 3 {
 		fmt.Println("Below is the board")

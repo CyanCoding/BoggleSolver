@@ -35,6 +35,16 @@ func TestWord(currentWord string) int {
 	return 2 // FAIL, no match or future matches with available letters
 }
 
+// Checks to see if the word found is already in the wordFoundList
+func Contains(array []string, test string) bool {
+	for _, a := range array {
+		if a == test {
+			return true
+		}
+	}
+	return false
+}
+
 // Recursively finds nearby board positions
 // In boggle, you can move vertically, horizontally, and diagonally
 func FindNearby(board [4][4]string, x int, y int, currentWord string) {
@@ -50,9 +60,12 @@ func FindNearby(board [4][4]string, x int, y int, currentWord string) {
 		wordResult := TestWord(currentWord)
 		switch wordResult {
 		case 0: // The word is valid
-			fmt.Println(currentWord)
-			wordsFound++
-			return
+			if !Contains(wordsFoundList, currentWord) {
+				fmt.Println(currentWord)
+				wordsFoundList = append(wordsFoundList, currentWord)
+				wordsFound++
+				return
+			}
 		case 2: // Word and future words are invalid
 			return
 		}
