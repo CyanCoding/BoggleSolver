@@ -9,6 +9,8 @@ import (
 )
 
 // dictionary.txt contains words you can find in a dictionary (valid boggle words)
+// dictionary-alt.txt is the same as dictionary.txt with a few capitalized things
+// like weekdays, a few common names, a few abbreviations, etc.
 // all-english.txt contains every english word (might not be in a dictionary)
 const wordsFile string = "dictionary.txt"
 
