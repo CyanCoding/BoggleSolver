@@ -18,13 +18,10 @@ func TestWord(currentWord string) int {
 		// longer than len(currentWord) in some instances
 		// Make sure you break before you hit an error
 		for j := 0; j < len(words[i]); j++ {
-			// We've gotten past the length of the word without
-			// hitting an incorrect letter. This means there COULD
-			// be potential solutions, but we haven't found one yet
-			if len(words[i]) > len(currentWord) {
-				return 1 // Potential for future match
+			if j+1 == len(currentWord) { // Hit the word's limit
+				// Might have a succesful match in the future
+				return 1
 			}
-
 			if words[i][j] != currentWord[j] { // Match failed, try next word
 				break
 			}
