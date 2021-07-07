@@ -64,7 +64,7 @@ func main() {
 			fmt.Println("Finding matches...")
 			FindNearby(dice, 0, 0, "")
 
-			fmt.Println("Ran ", searches, " times")
+			fmt.Println("Ran", searches, "times")
 		}
 	}
 }
