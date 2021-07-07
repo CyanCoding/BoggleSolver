@@ -9,6 +9,8 @@ import (
 
 const wordsFile string = "words.txt"
 
+var words []string // Word list (about 436k)
+
 func ReadWordsFile() []string {
 	byteData, err := ioutil.ReadFile(wordsFile)
 
@@ -25,7 +27,6 @@ func ReadWordsFile() []string {
 func main() {
 	var group sync.WaitGroup
 
-	var words []string
 	group.Add(1)
 	go func() {
 		words = ReadWordsFile()
