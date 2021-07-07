@@ -43,14 +43,18 @@ func FindNearby(board [4][4]string, x int, y int, currentWord string) {
 	// cookie crumbles. Don't mess with it!!
 	currentWord += board[y][x]
 
-	wordResult := TestWord(currentWord)
-	switch wordResult {
-	case 0: // The word is valid
-		fmt.Println(currentWord)
-		wordsFound++
-		return
-	case 2: // Word and future words are invalid
-		return
+	// Here we define the rules of the game.
+	// No words under three letters!
+	if len(currentWord) < 3 {
+		wordResult := TestWord(currentWord)
+		switch wordResult {
+		case 0: // The word is valid
+			fmt.Println(currentWord)
+			wordsFound++
+			return
+		case 2: // Word and future words are invalid
+			return
+		}
 	}
 
 	// Can go west
