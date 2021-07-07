@@ -13,6 +13,7 @@ const wordsFile string = "dictionary.txt"
 
 var wordsFound int64
 var searches int64
+var wordsChecked int64
 var words []string // Word list (about 436k)
 var wordsFoundList []string
 
@@ -70,7 +71,8 @@ func main() {
 				}
 			}
 
-			fmt.Println("Ran", searches, "times")
+			fmt.Println("Ran", humanize.Comma(searches), "times and tested",
+				humanize.Comma(wordsChecked), "words")
 		}
 	}
 }
