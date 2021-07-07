@@ -3898,7 +3898,6 @@ aspire
 aspirer
 aspirin
 asquint
-ass
 assagai
 assail
 assailability
@@ -7847,7 +7846,6 @@ bullocky
 bullpen
 bullring
 bullrush
-bullshit
 bullshot
 bullterrier
 bully
@@ -9977,7 +9975,6 @@ chickenfeed
 chickenfight
 chickenhearted
 chickenpox
-chickenshit
 chickeree
 chickpea
 chickweed
@@ -15927,7 +15924,6 @@ dickens
 dicker
 dickey
 dickeybird
-dickhead
 dickie
 dicky
 dickybird
@@ -15959,7 +15955,6 @@ didder
 diddle
 diddley
 diddly
-diddlyshit
 diddlysquat
 die
 dieback
@@ -17028,6 +17023,7 @@ doer
 doeskin
 doff
 dog
+cat
 dogbane
 dogcart
 doge
@@ -17056,7 +17052,6 @@ dogmatism
 dogmatist
 dogmatize
 dogsbody
-dogshit
 dogsled
 dogtooth
 dogtrot
@@ -22576,11 +22571,6 @@ frying
 frypan
 fthm
 fuchsia
-fuck
-fucker
-fuckhead
-fucking
-fuckup
 fucoid
 fucus
 fuddle
@@ -22877,7 +22867,6 @@ gambrel
 game
 gamebag
 gameboard
-gamecock
 gamekeeper
 gamelan
 gamely
@@ -26354,7 +26343,6 @@ horseplay
 horsepond
 horsepower
 horseradish
-horseshit
 horseshoe
 horseshoer
 horseshoes
@@ -31923,7 +31911,6 @@ liturgics
 liturgiology
 liturgist
 liturgy
-liv
 livable
 live
 liveable
@@ -35339,7 +35326,6 @@ moth
 mothball
 mother
 motherese
-motherfucker
 motherhood
 motherland
 motherless
@@ -49408,18 +49394,7 @@ shirtwaist
 shirtwaister
 shirty
 shisha
-shit
 shite
-shithead
-shitless
-shitlist
-shittah
-shitter
-shittim
-shittimwood
-shitting
-shitty
-shitwork
 shiv
 shivah
 shivaree
