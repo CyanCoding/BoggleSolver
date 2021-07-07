@@ -47,6 +47,7 @@ func FindNearby(board [4][4]string, x int, y int, currentWord string) {
 	switch wordResult {
 	case 0: // The word is valid
 		fmt.Println(currentWord)
+		wordsFound++
 		return
 	case 2: // Word and future words are invalid
 		return

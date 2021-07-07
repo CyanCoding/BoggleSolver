@@ -9,6 +9,7 @@ import (
 
 const wordsFile string = "words.txt"
 
+var wordsFound int
 var words []string // Word list (about 436k)
 
 func ReadWordsFile() []string {
