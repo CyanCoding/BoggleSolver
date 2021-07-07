@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cyancoding/go-humanize"
 	"fmt"
 	"io/ioutil"
 	"strings"
@@ -47,7 +48,7 @@ func main() {
 	fmt.Print("Action > ")
 
 	var action int = 2
-	fmt.Scanln(&action)
+	//fmt.Scanln(&action)
 
 	if action < 1 || action > 3 { // Action is not valid
 		action = 2
@@ -68,6 +69,7 @@ func main() {
 			for i := 0; i < 4; i++ {
 				for j := 0; j < 4; j++ {
 					FindNearby(dice, i, j, "")
+					//fmt.Println("Finished (", i, ",", j, ")")
 				}
 			}
 
