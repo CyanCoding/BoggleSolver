@@ -66,7 +66,6 @@ func FindNearby(board [4][4]string, x int, y int, currentWord string) {
 				fmt.Println(currentWord)
 				wordsFoundList = append(wordsFoundList, currentWord)
 				wordsFound++
-				return
 			}
 		case 2: // Word and future words are invalid
 			return
@@ -103,7 +102,7 @@ func FindNearby(board [4][4]string, x int, y int, currentWord string) {
 		FindNearby(board, x-1, y-1, currentWord)
 	}
 	// Can go northeast
-	if x < 3 && y < 0 {
-		FindNearby(board, x-1, y+1, currentWord)
+	if x < 3 && y > 0 {
+		FindNearby(board, x+1, y-1, currentWord)
 	}
 }
