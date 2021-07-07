@@ -11,7 +11,8 @@ import (
 // all-english.txt contains every english word (might not be in a dictionary)
 const wordsFile string = "dictionary.txt"
 
-var wordsFound int
+var wordsFound int64
+var searches int64
 var words []string // Word list (about 436k)
 
 func ReadWordsFile() []string {

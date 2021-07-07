@@ -38,6 +38,7 @@ func TestWord(currentWord string) int {
 // Recursively finds nearby board positions
 // In boggle, you can move vertically, horizontally, and diagonally
 func FindNearby(board [4][4]string, x int, y int, currentWord string) {
+	searches++
 	// NOTE: we use x and y here to easily determine location. Unlike
 	// typical axis, y is in the first position because of the way the
 	// cookie crumbles. Don't mess with it!!
