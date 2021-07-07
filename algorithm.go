@@ -3,7 +3,9 @@ package main
 import "fmt"
 
 func TestWord(currentWord string) int {
+	futureSuccess := false
 	for i := 0; i < len(words); i++ {
+		wordsChecked++
 		if len(words[i]) < len(currentWord) { // Word is not proper length
 			continue
 		}
@@ -18,18 +20,21 @@ func TestWord(currentWord string) int {
 		// longer than len(currentWord) in some instances
 		// Make sure you break before you hit an error
 		for j := 0; j < len(words[i]); j++ {
-			if j+1 == len(currentWord) { // Hit the word's limit
+			if j+1 == len(currentWord) && words[i][j] == currentWord[j] { // Hit the word's limit
 				// Might have a succesful match in the future
-				return 1
+				futureSuccess = true
+				break
 			}
 			if words[i][j] != currentWord[j] { // Match failed, try next word
 				break
 			}
 		}
 	}
-
-	// We've gotten this far and haven't returned, so return bad
-	return 2 // FAIL, no match or future matches with available letters
+	if futureSuccess {
+		return 1
+	} else {
+		return 2
+	}
 }
 
 // Checks to see if the word found is already in the wordFoundList
