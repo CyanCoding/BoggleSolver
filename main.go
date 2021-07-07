@@ -7,7 +7,9 @@ import (
 	"sync"
 )
 
-const wordsFile string = "words.txt"
+// dictionary.txt contains words you can find in a dictionary (valid boggle words)
+// all-english.txt contains every english word (might not be in a dictionary)
+const wordsFile string = "dictionary.txt"
 
 var wordsFound int
 var words []string // Word list (about 436k)
@@ -56,8 +58,8 @@ func main() {
 		fmt.Println()
 		PrintDice(dice)
 		fmt.Println()
-		
-		if (action == 2) {
+
+		if action == 2 {
 			fmt.Println("Finding matches...")
 			FindNearby(dice, 0, 0, "")
 		}
