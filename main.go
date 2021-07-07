@@ -48,7 +48,7 @@ func main() {
 	fmt.Print("Action > ")
 
 	var action int = 2
-	//fmt.Scanln(&action)
+	fmt.Scanln(&action)
 
 	if action < 1 || action > 3 { // Action is not valid
 		action = 2
@@ -66,15 +66,22 @@ func main() {
 
 		if action == 2 {
 			fmt.Println("Finding matches...")
+
 			for i := 0; i < 4; i++ {
 				for j := 0; j < 4; j++ {
 					FindNearby(dice, i, j, "")
-					//fmt.Println("Finished (", i, ",", j, ")")
 				}
 			}
 
 			fmt.Println("Ran", humanize.Comma(searches), "times and tested",
 				humanize.Comma(wordsChecked), "words")
+
+			var letterCount int64
+			for _, a := range wordsFoundList {
+				letterCount += int64(len(a))
+			}
+
+			fmt.Println("That's", humanize.Comma(letterCount), "points!")
 		}
 	}
 }
