@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"strings"
+	"sync"
 )
 
 const wordsFile string = "words.txt"
@@ -22,9 +23,13 @@ func ReadWordsFile() []string {
 }
 
 func main() {
+	var group sync.WaitGroup
+
 	var words []string
+	group.Add(1)
 	go func() {
 		words = ReadWordsFile()
+		defer group.Done()
 	}()
 	dice := RollDice()
 
@@ -41,6 +46,8 @@ func main() {
 		action = 2
 		fmt.Println("\nYou did not enter a valid number. Defaulting to 2")
 	}
+
+	group.Wait() // Make sure the word compilation has finished
 
 	if action < 3 {
 		fmt.Println("Below is the board")
