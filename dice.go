@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"math/rand"
+	"os"
 	"strings"
 	"time"
 )
@@ -141,22 +143,29 @@ func FillDice() (d [16][6]string) {
 }
 
 func ManuallySetDice() (dice [4][4]string) {
-	var row1 string
-	var row2 string
-	var row3 string
-	var row4 string
-
 	fmt.Println("Fill in each of the four rows below with spaces between letters")
+
+	reader := bufio.NewReader(os.Stdin)
+
 	fmt.Print("(1) > ")
-	fmt.Scanln(&row1)
+	row1, _ := reader.ReadString('\n')
+
 	fmt.Print("(2) > ")
-	fmt.Scanln(&row2)
+	row2, _ := reader.ReadString('\n')
+
 	fmt.Print("(3) > ")
-	fmt.Scanln(&row3)
+	row3, _ := reader.ReadString('\n')
+
 	fmt.Print("(4) > ")
-	fmt.Scanln(&row4)
+	row4, _ := reader.ReadString('\n')
 
 	fmt.Println()
+
+	row1 = strings.TrimSuffix(row1, "\n")
+	row2 = strings.TrimSuffix(row2, "\n")
+	row3 = strings.TrimSuffix(row3, "\n")
+	row4 = strings.TrimSuffix(row4, "\n")
+
 	row1Array := strings.Fields(row1)
 	row2Array := strings.Fields(row2)
 	row3Array := strings.Fields(row3)
