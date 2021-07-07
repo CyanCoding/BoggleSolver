@@ -30554,7 +30554,6 @@ koudou
 koumiss
 kowhai
 kowtow
-kph
 kraal
 kraft
 krait
@@ -35454,9 +35453,6 @@ mower
 mown
 moxie
 mozzarella
-mph
-msasa
-msec
 muadhdhin
 muazzin
 much
