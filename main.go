@@ -56,5 +56,10 @@ func main() {
 		fmt.Println()
 		PrintDice(dice)
 		fmt.Println()
+		
+		if (action == 2) {
+			fmt.Println("Finding matches...")
+			FindNearby(dice, 0, 0, "")
+		}
 	}
 }
