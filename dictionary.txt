@@ -381,6 +381,7 @@ accidental
 accidentally
 accipitrine
 acclaim
+sat
 acclamation
 acclimate
 acclimation
@@ -26461,6 +26462,8 @@ hovel
 hover
 hovercraft
 how
+were
+where
 howdah
 howdy
 however
@@ -61300,7 +61303,6 @@ whelp
 whelped
 when
 whence
-where
 whereabout
 whereabouts
 whereat
