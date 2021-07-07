@@ -12,7 +12,7 @@ import (
 // dictionary-alt.txt is the same as dictionary.txt with a few capitalized things
 // like weekdays, a few common names, a few abbreviations, etc.
 // all-english.txt contains every english word (might not be in a dictionary)
-const wordsFile string = "dictionary.txt"
+var wordsFile string
 
 var wordsFound int64
 var searches int64
@@ -34,13 +34,6 @@ func ReadWordsFile() []string {
 }
 
 func main() {
-	var group sync.WaitGroup
-
-	group.Add(1)
-	go func() {
-		words = ReadWordsFile()
-		defer group.Done()
-	}()
 	dice := RollDice()
 
 	fmt.Println("Welcome to the boggle solver/computer version!")
@@ -51,6 +44,31 @@ func main() {
 
 	var action int = 2
 	fmt.Scanln(&action)
+
+	fmt.Println()
+	fmt.Println("Please pick your dictionary.")
+	fmt.Println("(1) Only dictionary words, (2) all English words")
+	fmt.Print("Dictionary > ")
+	var dictionary int = 0
+	fmt.Scanln(&dictionary)
+	fmt.Println()
+
+	if dictionary == 1 {
+		wordsFile = "dictionary.txt"
+	} else if dictionary == 2 {
+		wordsFile = "all-english.txt"
+	} else {
+		fmt.Println("Invalid response! Defaulting to dictionary.")
+		wordsFile = "dictionary.txt"
+	}
+
+	var group sync.WaitGroup
+
+	group.Add(1)
+	go func() {
+		words = ReadWordsFile()
+		defer group.Done()
+	}()
 
 	if action < 1 || action > 3 { // Action is not valid
 		action = 2
@@ -86,5 +104,6 @@ func main() {
 		letterCount += int64(len(a))
 	}
 
-	fmt.Println("That's", humanize.Comma(letterCount), "points!")
+	fmt.Println("That's", humanize.Comma(int64(len(wordsFoundList))), "words and",
+		humanize.Comma(letterCount), "points!")
 }
