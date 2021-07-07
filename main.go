@@ -60,30 +60,31 @@ func main() {
 	group.Wait() // Make sure the word compilation has finished
 	wordsFoundList = make([]string, 0)
 
-	if action < 3 {
-		fmt.Println("Below is the board")
-		fmt.Println()
-		PrintDice(dice)
-		fmt.Println()
+	if action == 3 {
+		dice = ManuallySetDice()
+	} else if action == 1 {
+		fmt.Println("This feature is not ready yet!")
+	}
 
-		if action == 2 {
-			fmt.Println("Finding matches...")
+	fmt.Println("Below is the board")
+	fmt.Println()
+	PrintDice(dice)
+	fmt.Println()
+	fmt.Println("Finding matches...")
 
-			for i := 0; i < 4; i++ {
-				for j := 0; j < 4; j++ {
-					FindNearby(dice, i, j, "")
-				}
-			}
-
-			fmt.Println("Ran", humanize.Comma(searches), "times and tested",
-				humanize.Comma(wordsChecked), "words")
-
-			var letterCount int64
-			for _, a := range wordsFoundList {
-				letterCount += int64(len(a))
-			}
-
-			fmt.Println("That's", humanize.Comma(letterCount), "points!")
+	for i := 0; i < 4; i++ {
+		for j := 0; j < 4; j++ {
+			FindNearby(dice, i, j, "")
 		}
 	}
+
+	fmt.Println("Ran", humanize.Comma(searches), "times and tested",
+		humanize.Comma(wordsChecked), "words")
+
+	var letterCount int64
+	for _, a := range wordsFoundList {
+		letterCount += int64(len(a))
+	}
+
+	fmt.Println("That's", humanize.Comma(letterCount), "points!")
 }
