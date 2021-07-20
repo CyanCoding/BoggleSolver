@@ -1,6 +1,6 @@
 package main
 
-import "fmt"
+import "strconv"
 
 func TestWord(currentWord string) int {
 	futureSuccess := false
@@ -63,7 +63,7 @@ func FindNearby(board [4][4]string, x int, y int, currentWord string) {
 		switch wordResult {
 		case 0: // The word is valid
 			if !Contains(wordsFoundList, currentWord) {
-				fmt.Println(currentWord)
+				s.SetMessage("Finding matches (" + strconv.Itoa(wordsFound) + ")...")
 				wordsFoundList = append(wordsFoundList, currentWord)
 				wordsFound++
 			}
