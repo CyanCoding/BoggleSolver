@@ -12,6 +12,7 @@ require (
 	github.com/pkg/browser v0.0.0-20210706143420-7d21f8c997e2 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
+	github.com/slok/gospinner v0.1.1 // indirect
 	github.com/wailsapp/wails v1.16.5 // indirect
 	golang.org/x/image v0.0.0-20210628002857-a66eb6448b8d // indirect
 	golang.org/x/net v0.0.0-20210716203947-853a461950ff // indirect

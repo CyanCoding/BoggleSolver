@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"strings"
 	"sync"
+
+	"github.com/slok/gospinner"
 )
 
 // dictionary.txt contains words you can find in a dictionary (valid boggle words)
@@ -14,11 +16,13 @@ import (
 // all-english.txt contains every english word (might not be in a dictionary)
 var wordsFile string
 
-var wordsFound int64
+var wordsFound int
 var searches int64
 var wordsChecked int64
 var words []string // Word list (about 436k)
 var wordsFoundList []string
+
+var s *gospinner.Spinner
 
 func ReadWordsFile() []string {
 	byteData, err := ioutil.ReadFile(wordsFile)
@@ -88,12 +92,19 @@ func main() {
 	fmt.Println()
 	PrintDice(dice)
 	fmt.Println()
-	fmt.Println("Finding matches...")
+	s, _ = gospinner.NewSpinner(gospinner.Dots2)
+	s.Start("Finding matches (0)...")
 
 	for i := 0; i < 4; i++ {
 		for j := 0; j < 4; j++ {
 			FindNearby(dice, i, j, "")
 		}
+	}
+	s.SetMessage("Found all matches!")
+	s.Succeed()
+
+	for _, a := range wordsFoundList {
+		fmt.Println(a)
 	}
 
 	fmt.Println("Ran", humanize.Comma(searches), "times and tested",
