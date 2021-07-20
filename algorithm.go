@@ -49,7 +49,7 @@ func Contains(array []string, test string) bool {
 
 // Recursively finds nearby board positions
 // In boggle, you can move vertically, horizontally, and diagonally
-func FindNearby(board [4][4]string, x int, y int, currentWord string) {
+func FindNearby(board [5][5]string, x int, y int, currentWord string) {
 	searches++
 	// NOTE: we use x and y here to easily determine location. Unlike
 	// typical axis, y is in the first position because of the way the
@@ -63,7 +63,8 @@ func FindNearby(board [4][4]string, x int, y int, currentWord string) {
 		switch wordResult {
 		case 0: // The word is valid
 			if !Contains(wordsFoundList, currentWord) {
-				s.SetMessage("Finding matches (" + strconv.Itoa(wordsFound) + ")...")
+				s.SetMessage("Finding matches (" + strconv.Itoa(percentDone) +
+					"% • " + strconv.Itoa(wordsFound) + ")...")
 				wordsFoundList = append(wordsFoundList, currentWord)
 				wordsFound++
 			}
@@ -77,7 +78,7 @@ func FindNearby(board [4][4]string, x int, y int, currentWord string) {
 		FindNearby(board, x-1, y, currentWord)
 	}
 	// Can go east
-	if x < 3 {
+	if x < 4 {
 		FindNearby(board, x+1, y, currentWord)
 	}
 	// Can go north
@@ -85,16 +86,16 @@ func FindNearby(board [4][4]string, x int, y int, currentWord string) {
 		FindNearby(board, x, y-1, currentWord)
 	}
 	// Can go south
-	if y < 3 {
+	if y < 4 {
 		FindNearby(board, x, y+1, currentWord)
 	}
 
 	// Can go southeast
-	if x < 3 && y < 3 {
+	if x < 4 && y < 4 {
 		FindNearby(board, x+1, y+1, currentWord)
 	}
 	// Can go southwest
-	if x > 0 && y < 3 {
+	if x > 0 && y < 4 {
 		FindNearby(board, x-1, y+1, currentWord)
 	}
 	// Can go northwest
@@ -102,7 +103,7 @@ func FindNearby(board [4][4]string, x int, y int, currentWord string) {
 		FindNearby(board, x-1, y-1, currentWord)
 	}
 	// Can go northeast
-	if x < 3 && y > 0 {
+	if x < 4 && y > 0 {
 		FindNearby(board, x+1, y-1, currentWord)
 	}
 }

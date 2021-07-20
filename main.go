@@ -24,6 +24,8 @@ var wordsFoundList []string
 
 var s *gospinner.Spinner
 
+var percentDone int
+
 func ReadWordsFile() []string {
 	byteData, err := ioutil.ReadFile(wordsFile)
 
@@ -93,11 +95,12 @@ func main() {
 	PrintDice(dice)
 	fmt.Println()
 	s, _ = gospinner.NewSpinner(gospinner.Dots2)
-	s.Start("Finding matches (0)...")
+	s.Start("Finding matches (0% • 0)...")
 
-	for i := 0; i < 4; i++ {
-		for j := 0; j < 4; j++ {
+	for i := 0; i < 5; i++ {
+		for j := 0; j < 5; j++ {
 			FindNearby(dice, i, j, "")
+			percentDone += 4
 		}
 	}
 	s.SetMessage("Found all matches!")
