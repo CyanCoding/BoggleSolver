@@ -10,6 +10,15 @@ import (
 	"github.com/slok/gospinner"
 )
 
+// Colors
+const ColorReset = "\033[0m"
+const ColorRed = "\033[31m"
+const ColorGreen = "\033[32m"
+const ColorYellow = "\033[33m"
+const ColorBlue = "\033[34m"
+const ColorPurple = "\033[35m"
+const ColorCyan = "\033[36m"
+
 // oxford.txt contains words you can find in a dictionary (valid boggle words)
 // all-english.txt contains every english word (might not be in a dictionary)
 var wordsFile string
@@ -40,18 +49,18 @@ func ReadWordsFile() []string {
 }
 
 func main() {
-	fmt.Println("Welcome to the boggle solver/computer version!")
+	fmt.Println(ColorPurple + "Welcome to the boggle solver/computer version!")
 	fmt.Println("Please choose one of the following")
 	fmt.Println("Solo mode (1), computer solve (2), input board (3)")
 	fmt.Println()
-	fmt.Print("Action > ")
+	fmt.Print(ColorYellow + "Action > ")
 
 	var action int = 2
 	fmt.Scanln(&action)
 
 	fmt.Println()
-	fmt.Println("Please pick a board size")
-	fmt.Print("(1) 4x4, (2) 5x5 > ")
+	fmt.Println(ColorPurple + "Please pick a board size")
+	fmt.Print(ColorYellow + "(1) 4x4, (2) 5x5 > ")
 
 	var boardSize int = 1
 	fmt.Scanln(&boardSize)
@@ -59,16 +68,16 @@ func main() {
 	if boardSize == 2 {
 		width = 5
 	} else if boardSize != 1 { // Invalid value
-		fmt.Println("Invalid response! Defaulting to 4x4")
+		fmt.Println(ColorRed + "Invalid response! Defaulting to 4x4")
 		width = 4
 	}
 
 	dice := RollDice()
 
 	fmt.Println()
-	fmt.Println("Please pick your dictionary")
+	fmt.Println(ColorPurple + "Please pick your dictionary")
 	fmt.Println("(1) Only dictionary words, (2) all English words")
-	fmt.Print("Dictionary > ")
+	fmt.Print(ColorYellow + "Dictionary > ")
 	var dictionary int = 0
 	fmt.Scanln(&dictionary)
 	fmt.Println()
@@ -78,7 +87,7 @@ func main() {
 	} else if dictionary == 2 {
 		wordsFile = "all-english.txt"
 	} else {
-		fmt.Println("Invalid response! Defaulting to dictionary")
+		fmt.Println(ColorRed + "Invalid response! Defaulting to dictionary")
 		wordsFile = "dictionary.txt"
 	}
 
@@ -92,7 +101,7 @@ func main() {
 
 	if action < 1 || action > 3 { // Action is not valid
 		action = 2
-		fmt.Println("\nYou did not enter a valid number. Defaulting to 2")
+		fmt.Println(ColorRed + "\nYou did not enter a valid number. Defaulting to 2")
 	}
 
 	group.Wait() // Make sure the word compilation has finished
@@ -101,15 +110,15 @@ func main() {
 	if action == 3 {
 		dice = ManuallySetDice()
 	} else if action == 1 {
-		fmt.Println("This feature is not ready yet!")
+		fmt.Println(ColorRed + "This feature is not ready yet!")
 	}
 
-	fmt.Println("Below is the board")
+	fmt.Println(ColorPurple + "Below is the board")
 	fmt.Println()
 	PrintDice(dice)
 	fmt.Println()
 	s, _ = gospinner.NewSpinner(gospinner.Dots2)
-	s.Start("Finding matches (0% • 0)...")
+	s.Start(ColorCyan + "Finding matches (0% • 0)...")
 
 	for i := 0; i < width; i++ {
 		for j := 0; j < width; j++ {
@@ -117,14 +126,14 @@ func main() {
 			percentDone += 100 / (width * width)
 		}
 	}
-	s.SetMessage("Found all matches!")
+	s.SetMessage(ColorGreen + "Found all matches!")
 	s.Succeed()
 
 	for _, a := range wordsFoundList {
 		fmt.Println(a)
 	}
 
-	fmt.Println("Ran", humanize.Comma(searches), "times and tested",
+	fmt.Println(ColorPurple+"Ran", humanize.Comma(searches), "times and tested",
 		humanize.Comma(wordsChecked), "words")
 
 	var letterCount int64

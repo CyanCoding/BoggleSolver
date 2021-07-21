@@ -63,7 +63,7 @@ func FindNearby(board [5][5]string, x int, y int, currentWord string) {
 		switch wordResult {
 		case 0: // The word is valid
 			if !Contains(wordsFoundList, currentWord) {
-				s.SetMessage("Finding matches (" + strconv.Itoa(percentDone) +
+				s.SetMessage(ColorCyan + "Finding matches (" + strconv.Itoa(percentDone) +
 					"% • " + strconv.Itoa(wordsFound) + ")...")
 				wordsFoundList = append(wordsFoundList, currentWord)
 				wordsFound++
