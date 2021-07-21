@@ -24,6 +24,10 @@ var wordsFoundList []string
 
 var s *gospinner.Spinner
 
+var percentDone int
+
+var width int = 4 // 4 or 5 for 4x4/5x5
+
 func ReadWordsFile() []string {
 	byteData, err := ioutil.ReadFile(wordsFile)
 
@@ -38,8 +42,6 @@ func ReadWordsFile() []string {
 }
 
 func main() {
-	dice := RollDice()
-
 	fmt.Println("Welcome to the boggle solver/computer version!")
 	fmt.Println("Please choose one of the following")
 	fmt.Println("Solo mode (1), computer solve (2), input board (3)")
@@ -50,7 +52,23 @@ func main() {
 	fmt.Scanln(&action)
 
 	fmt.Println()
-	fmt.Println("Please pick your dictionary.")
+	fmt.Println("Please pick a board size")
+	fmt.Print("(1) 4x4, (2) 5x5 > ")
+
+	var boardSize int = 1
+	fmt.Scanln(&boardSize)
+
+	if boardSize == 2 {
+		width = 5
+	} else if boardSize != 1 { // Invalid value
+		fmt.Println("Invalid response! Defaulting to 4x4")
+		width = 4
+	}
+
+	dice := RollDice()
+
+	fmt.Println()
+	fmt.Println("Please pick your dictionary")
 	fmt.Println("(1) Only dictionary words, (2) all English words")
 	fmt.Print("Dictionary > ")
 	var dictionary int = 0
@@ -62,7 +80,7 @@ func main() {
 	} else if dictionary == 2 {
 		wordsFile = "all-english.txt"
 	} else {
-		fmt.Println("Invalid response! Defaulting to dictionary.")
+		fmt.Println("Invalid response! Defaulting to dictionary")
 		wordsFile = "dictionary.txt"
 	}
 
@@ -93,11 +111,12 @@ func main() {
 	PrintDice(dice)
 	fmt.Println()
 	s, _ = gospinner.NewSpinner(gospinner.Dots2)
-	s.Start("Finding matches (0)...")
+	s.Start("Finding matches (0% • 0)...")
 
-	for i := 0; i < 4; i++ {
-		for j := 0; j < 4; j++ {
+	for i := 0; i < width; i++ {
+		for j := 0; j < width; j++ {
 			FindNearby(dice, i, j, "")
+			percentDone += 4
 		}
 	}
 	s.SetMessage("Found all matches!")
