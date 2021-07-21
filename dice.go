@@ -273,9 +273,16 @@ func ManuallySetDice() (dice [5][5]string) {
 }
 
 func PrintDice(dice [5][5]string) {
-	fmt.Println(dice[0][0], "\t", dice[0][1], "\t", dice[0][2], "\t", dice[0][3], "\t", dice[0][4])
-	fmt.Println(dice[1][0], "\t", dice[1][1], "\t", dice[1][2], "\t", dice[1][3], "\t", dice[1][4])
-	fmt.Println(dice[2][0], "\t", dice[2][1], "\t", dice[2][2], "\t", dice[2][3], "\t", dice[2][4])
-	fmt.Println(dice[3][0], "\t", dice[3][1], "\t", dice[3][2], "\t", dice[3][3], "\t", dice[3][4])
-	fmt.Println(dice[4][0], "\t", dice[4][1], "\t", dice[4][2], "\t", dice[4][3], "\t", dice[4][4])
+	if width == 4 {
+		fmt.Println(dice[0][0], "\t", dice[0][1], "\t", dice[0][2], "\t", dice[0][3])
+		fmt.Println(dice[1][0], "\t", dice[1][1], "\t", dice[1][2], "\t", dice[1][3])
+		fmt.Println(dice[2][0], "\t", dice[2][1], "\t", dice[2][2], "\t", dice[2][3])
+		fmt.Println(dice[3][0], "\t", dice[3][1], "\t", dice[3][2], "\t", dice[3][3])
+	} else if width == 5 {
+		fmt.Println(dice[0][0], "\t", dice[0][1], "\t", dice[0][2], "\t", dice[0][3], "\t", dice[0][4])
+		fmt.Println(dice[1][0], "\t", dice[1][1], "\t", dice[1][2], "\t", dice[1][3], "\t", dice[1][4])
+		fmt.Println(dice[2][0], "\t", dice[2][1], "\t", dice[2][2], "\t", dice[2][3], "\t", dice[2][4])
+		fmt.Println(dice[3][0], "\t", dice[3][1], "\t", dice[3][2], "\t", dice[3][3], "\t", dice[3][4])
+		fmt.Println(dice[4][0], "\t", dice[4][1], "\t", dice[4][2], "\t", dice[4][3], "\t", dice[4][4])
+	}
 }

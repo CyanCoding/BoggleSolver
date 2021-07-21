@@ -78,7 +78,7 @@ func FindNearby(board [5][5]string, x int, y int, currentWord string) {
 		FindNearby(board, x-1, y, currentWord)
 	}
 	// Can go east
-	if x < 4 {
+	if x < (width - 1) {
 		FindNearby(board, x+1, y, currentWord)
 	}
 	// Can go north
@@ -86,16 +86,16 @@ func FindNearby(board [5][5]string, x int, y int, currentWord string) {
 		FindNearby(board, x, y-1, currentWord)
 	}
 	// Can go south
-	if y < 4 {
+	if y < (width - 1) {
 		FindNearby(board, x, y+1, currentWord)
 	}
 
 	// Can go southeast
-	if x < 4 && y < 4 {
+	if x < (width-1) && y < (width-1) {
 		FindNearby(board, x+1, y+1, currentWord)
 	}
 	// Can go southwest
-	if x > 0 && y < 4 {
+	if x > 0 && y < (width-1) {
 		FindNearby(board, x-1, y+1, currentWord)
 	}
 	// Can go northwest
@@ -103,7 +103,7 @@ func FindNearby(board [5][5]string, x int, y int, currentWord string) {
 		FindNearby(board, x-1, y-1, currentWord)
 	}
 	// Can go northeast
-	if x < 4 && y > 0 {
+	if x < (width-1) && y > 0 {
 		FindNearby(board, x+1, y-1, currentWord)
 	}
 }
