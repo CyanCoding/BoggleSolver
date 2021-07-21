@@ -116,7 +116,7 @@ func main() {
 	for i := 0; i < width; i++ {
 		for j := 0; j < width; j++ {
 			FindNearby(dice, i, j, "")
-			percentDone += 4
+			percentDone += 100 / (width * width)
 		}
 	}
 	s.SetMessage("Found all matches!")
