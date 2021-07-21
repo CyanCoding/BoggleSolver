@@ -10,9 +10,7 @@ import (
 	"github.com/slok/gospinner"
 )
 
-// dictionary.txt contains words you can find in a dictionary (valid boggle words)
-// dictionary-alt.txt is the same as dictionary.txt with a few capitalized things
-// like weekdays, a few common names, a few abbreviations, etc.
+// oxford.txt contains words you can find in a dictionary (valid boggle words)
 // all-english.txt contains every english word (might not be in a dictionary)
 var wordsFile string
 
@@ -76,7 +74,7 @@ func main() {
 	fmt.Println()
 
 	if dictionary == 1 {
-		wordsFile = "dictionary.txt"
+		wordsFile = "oxford.txt"
 	} else if dictionary == 2 {
 		wordsFile = "all-english.txt"
 	} else {
