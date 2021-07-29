@@ -122,7 +122,7 @@ func main() {
 
 	for i := 0; i < width; i++ {
 		for j := 0; j < width; j++ {
-			FindNearby(dice, i, j, "", true)
+			FindNearby(dice, i, j, "", false)
 			percentDone += 100 / (width * width)
 		}
 	}

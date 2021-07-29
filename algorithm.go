@@ -71,10 +71,13 @@ func FindNearby(board [5][5]string, x int, y int, currentWord string, repeatLett
 
 	// We make sure that the dice code isn't already present in this word
 	if !repeatLetters {
-		for _, value := range DiceMap {
-			if !containsInt(DiceCodesUsed, value) {
+		for key, value := range DiceMap {
+			if board[x][y] == key && containsInt(DiceCodesUsed, value) {
+				DiceCodesUsed = nil
+				return
+			} else if board[x][y] == key && !containsInt(DiceCodesUsed, value) { // It does contain the letter
 				DiceCodesUsed = append(DiceCodesUsed, value)
-			} else {
+			} else if board[x][y] != key && containsInt(DiceCodesUsed, value) {
 				DiceCodesUsed = nil
 				return
 			}
@@ -94,6 +97,7 @@ func FindNearby(board [5][5]string, x int, y int, currentWord string, repeatLett
 				wordsFound++
 			}
 		case 2: // Word and future words are invalid
+			DiceCodesUsed = nil
 			return
 		}
 	}
