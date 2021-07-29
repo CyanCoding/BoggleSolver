@@ -2,6 +2,8 @@ package main
 
 import "strconv"
 
+var DiceCodesUsed []int
+
 func TestWord(currentWord string) int {
 	futureSuccess := false
 	for i := 0; i < len(words); i++ {
@@ -37,8 +39,19 @@ func TestWord(currentWord string) int {
 	}
 }
 
-// Checks to see if the word found is already in the wordFoundList
-func Contains(array []string, test string) bool {
+// Checks to see if a string is in a string array
+func containsString(array []string, test string) bool {
+	for _, a := range array {
+		if a == test {
+			return true
+		}
+	}
+	return false
+}
+
+// Check to see if an int is in an int array
+// Used for determining if a dice code is in diceCodesUsed
+func containsInt(array []int, test int) bool {
 	for _, a := range array {
 		if a == test {
 			return true
@@ -49,12 +62,24 @@ func Contains(array []string, test string) bool {
 
 // Recursively finds nearby board positions
 // In boggle, you can move vertically, horizontally, and diagonally
-func FindNearby(board [5][5]string, x int, y int, currentWord string) {
+func FindNearby(board [5][5]string, x int, y int, currentWord string, repeatLetters bool) {
 	searches++
 	// NOTE: we use x and y here to easily determine location. Unlike
 	// typical axis, y is in the first position because of the way the
 	// cookie crumbles. Don't mess with it!!
 	currentWord += board[y][x]
+
+	// We make sure that the dice code isn't already present in this word
+	if !repeatLetters {
+		for _, value := range DiceMap {
+			if !containsInt(DiceCodesUsed, value) {
+				DiceCodesUsed = append(DiceCodesUsed, value)
+			} else {
+				DiceCodesUsed = nil
+				return
+			}
+		}
+	}
 
 	// Here we define the rules of the game.
 	// No words under three letters!
@@ -62,7 +87,7 @@ func FindNearby(board [5][5]string, x int, y int, currentWord string) {
 		wordResult := TestWord(currentWord)
 		switch wordResult {
 		case 0: // The word is valid
-			if !Contains(wordsFoundList, currentWord) {
+			if !containsString(wordsFoundList, currentWord) {
 				s.SetMessage(ColorCyan + "Finding matches (" + strconv.Itoa(percentDone) +
 					"% • " + strconv.Itoa(wordsFound) + ")...")
 				wordsFoundList = append(wordsFoundList, currentWord)
@@ -75,35 +100,35 @@ func FindNearby(board [5][5]string, x int, y int, currentWord string) {
 
 	// Can go west
 	if x > 0 {
-		FindNearby(board, x-1, y, currentWord)
+		FindNearby(board, x-1, y, currentWord, repeatLetters)
 	}
 	// Can go east
 	if x < (width - 1) {
-		FindNearby(board, x+1, y, currentWord)
+		FindNearby(board, x+1, y, currentWord, repeatLetters)
 	}
 	// Can go north
 	if y > 0 {
-		FindNearby(board, x, y-1, currentWord)
+		FindNearby(board, x, y-1, currentWord, repeatLetters)
 	}
 	// Can go south
 	if y < (width - 1) {
-		FindNearby(board, x, y+1, currentWord)
+		FindNearby(board, x, y+1, currentWord, repeatLetters)
 	}
 
 	// Can go southeast
 	if x < (width-1) && y < (width-1) {
-		FindNearby(board, x+1, y+1, currentWord)
+		FindNearby(board, x+1, y+1, currentWord, repeatLetters)
 	}
 	// Can go southwest
 	if x > 0 && y < (width-1) {
-		FindNearby(board, x-1, y+1, currentWord)
+		FindNearby(board, x-1, y+1, currentWord, repeatLetters)
 	}
 	// Can go northwest
 	if x > 0 && y > 0 {
-		FindNearby(board, x-1, y-1, currentWord)
+		FindNearby(board, x-1, y-1, currentWord, repeatLetters)
 	}
 	// Can go northeast
 	if x < (width-1) && y > 0 {
-		FindNearby(board, x+1, y-1, currentWord)
+		FindNearby(board, x+1, y-1, currentWord, repeatLetters)
 	}
 }

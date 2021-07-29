@@ -162,6 +162,8 @@ var diceOptions = [150]string{
 	"i",
 }
 
+var DiceMap = map[string]int{}
+
 func RollDice() (dice [5][5]string) {
 	for i := 0; i < 5; i++ {
 		for j := 0; j < 5; j++ {
@@ -171,6 +173,7 @@ func RollDice() (dice [5][5]string) {
 			value := diceOptions[randomNumber]
 
 			dice[i][j] = value
+			DiceMap[value] = i + j
 		}
 	}
 
