@@ -169,6 +169,7 @@ func RollDice() (dice [5][5]string) {
 			// Gets a random number between 0 and 150
 			randomNumber := rand.Intn(150)
 			value := diceOptions[randomNumber]
+			time.Sleep(1 * time.Millisecond)
 
 			dice[i][j] = value
 		}
