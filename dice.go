@@ -162,26 +162,41 @@ var diceOptions = [150]string{
 	"i",
 }
 
-var DiceMap = map[string]int{}
+// Used for determining whether we have a duplicate ID or not
+var diceIDsUsed = []int{}
 
-func RollDice() (dice [5][5]string) {
+type diceValue struct {
+	character string
+	id        int
+}
+
+func RollDice() (dice [5][5]diceValue) {
 	for i := 0; i < 5; i++ {
 		for j := 0; j < 5; j++ {
 			rand.Seed(time.Now().UnixNano())
 			// Gets a random number between 0 and 150
 			randomNumber := rand.Intn(150)
 			value := diceOptions[randomNumber]
-			time.Sleep(1 * time.Millisecond)
+			time.Sleep(time.Millisecond)
 
-			dice[i][j] = value
-			DiceMap[value] = i + j
+			for {
+				if ContainsInt(diceIDsUsed, randomNumber) {
+					time.Sleep(time.Millisecond)
+					randomNumber = rand.Intn(150)
+				} else {
+					val := diceValue{value, randomNumber}
+
+					dice[i][j] = val
+					break
+				}
+			}
 		}
 	}
 
 	return
 }
 
-func ManuallySetDice() (dice [5][5]string) {
+func ManuallySetDice() (dice [5][5]diceValue) {
 	fmt.Println("Fill in each of the five rows below with spaces between letters")
 
 	reader := bufio.NewReader(os.Stdin)
@@ -215,50 +230,50 @@ func ManuallySetDice() (dice [5][5]string) {
 	row4Array := strings.Fields(row4)
 	row5Array := strings.Fields(row5)
 
-	dice[0][0] = row1Array[0]
-	dice[0][1] = row1Array[1]
-	dice[0][2] = row1Array[2]
-	dice[0][3] = row1Array[3]
-	dice[0][4] = row1Array[4]
+	dice[0][0].character = row1Array[0]
+	dice[0][1].character = row1Array[1]
+	dice[0][2].character = row1Array[2]
+	dice[0][3].character = row1Array[3]
+	dice[0][4].character = row1Array[4]
 
-	dice[1][0] = row2Array[0]
-	dice[1][1] = row2Array[1]
-	dice[1][2] = row2Array[2]
-	dice[1][3] = row2Array[3]
-	dice[1][4] = row2Array[4]
+	dice[1][0].character = row2Array[0]
+	dice[1][1].character = row2Array[1]
+	dice[1][2].character = row2Array[2]
+	dice[1][3].character = row2Array[3]
+	dice[1][4].character = row2Array[4]
 
-	dice[2][0] = row3Array[0]
-	dice[2][1] = row3Array[1]
-	dice[2][2] = row3Array[2]
-	dice[2][3] = row3Array[3]
-	dice[2][4] = row3Array[4]
+	dice[2][0].character = row3Array[0]
+	dice[2][1].character = row3Array[1]
+	dice[2][2].character = row3Array[2]
+	dice[2][3].character = row3Array[3]
+	dice[2][4].character = row3Array[4]
 
-	dice[3][0] = row4Array[0]
-	dice[3][1] = row4Array[1]
-	dice[3][2] = row4Array[2]
-	dice[3][3] = row4Array[3]
-	dice[3][4] = row4Array[4]
+	dice[3][0].character = row4Array[0]
+	dice[3][1].character = row4Array[1]
+	dice[3][2].character = row4Array[2]
+	dice[3][3].character = row4Array[3]
+	dice[3][4].character = row4Array[4]
 
-	dice[4][0] = row5Array[0]
-	dice[4][1] = row5Array[1]
-	dice[4][2] = row5Array[2]
-	dice[4][3] = row5Array[3]
-	dice[4][4] = row5Array[4]
+	dice[4][0].character = row5Array[0]
+	dice[4][1].character = row5Array[1]
+	dice[4][2].character = row5Array[2]
+	dice[4][3].character = row5Array[3]
+	dice[4][4].character = row5Array[4]
 
 	return dice
 }
 
-func PrintDice(dice [5][5]string) {
+func PrintDice(dice [5][5]diceValue) {
 	if width == 4 {
-		fmt.Println(dice[0][0], "\t", dice[0][1], "\t", dice[0][2], "\t", dice[0][3])
-		fmt.Println(dice[1][0], "\t", dice[1][1], "\t", dice[1][2], "\t", dice[1][3])
-		fmt.Println(dice[2][0], "\t", dice[2][1], "\t", dice[2][2], "\t", dice[2][3])
-		fmt.Println(dice[3][0], "\t", dice[3][1], "\t", dice[3][2], "\t", dice[3][3])
+		fmt.Println(dice[0][0].character, "\t", dice[0][1].character, "\t", dice[0][2].character, "\t", dice[0][3].character)
+		fmt.Println(dice[1][0].character, "\t", dice[1][1].character, "\t", dice[1][2].character, "\t", dice[1][3].character)
+		fmt.Println(dice[2][0].character, "\t", dice[2][1].character, "\t", dice[2][2].character, "\t", dice[2][3].character)
+		fmt.Println(dice[3][0].character, "\t", dice[3][1].character, "\t", dice[3][2].character, "\t", dice[3][3].character)
 	} else if width == 5 {
-		fmt.Println(dice[0][0], "\t", dice[0][1], "\t", dice[0][2], "\t", dice[0][3], "\t", dice[0][4])
-		fmt.Println(dice[1][0], "\t", dice[1][1], "\t", dice[1][2], "\t", dice[1][3], "\t", dice[1][4])
-		fmt.Println(dice[2][0], "\t", dice[2][1], "\t", dice[2][2], "\t", dice[2][3], "\t", dice[2][4])
-		fmt.Println(dice[3][0], "\t", dice[3][1], "\t", dice[3][2], "\t", dice[3][3], "\t", dice[3][4])
-		fmt.Println(dice[4][0], "\t", dice[4][1], "\t", dice[4][2], "\t", dice[4][3], "\t", dice[4][4])
+		fmt.Println(dice[0][0].character, "\t", dice[0][1].character, "\t", dice[0][2].character, "\t", dice[0][3].character, "\t", dice[0][4].character)
+		fmt.Println(dice[1][0].character, "\t", dice[1][1].character, "\t", dice[1][2].character, "\t", dice[1][3].character, "\t", dice[1][4].character)
+		fmt.Println(dice[2][0].character, "\t", dice[2][1].character, "\t", dice[2][2].character, "\t", dice[2][3].character, "\t", dice[2][4].character)
+		fmt.Println(dice[3][0].character, "\t", dice[3][1].character, "\t", dice[3][2].character, "\t", dice[3][3].character, "\t", dice[3][4].character)
+		fmt.Println(dice[4][0].character, "\t", dice[4][1].character, "\t", dice[4][2].character, "\t", dice[4][3].character, "\t", dice[4][4].character)
 	}
 }
