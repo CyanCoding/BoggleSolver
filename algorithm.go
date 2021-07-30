@@ -2,8 +2,6 @@ package main
 
 import "strconv"
 
-var DiceCodesUsed []int
-
 func TestWord(currentWord string) int {
 	futureSuccess := false
 	for i := 0; i < len(words); i++ {
@@ -51,7 +49,7 @@ func containsString(array []string, test string) bool {
 
 // Check to see if an int is in an int array
 // Used for determining if a dice code is in diceCodesUsed
-func containsInt(array []int, test int) bool {
+func ContainsInt(array []int, test int) bool {
 	for _, a := range array {
 		if a == test {
 			return true
@@ -62,25 +60,23 @@ func containsInt(array []int, test int) bool {
 
 // Recursively finds nearby board positions
 // In boggle, you can move vertically, horizontally, and diagonally
-func FindNearby(board [5][5]string, x int, y int, currentWord string, repeatLetters bool) {
+func FindNearby(board [5][5]diceValue, x int, y int, currentWord string, repeatLetters bool, diceCodesUsed []int) {
 	searches++
-	// NOTE: we use x and y here to easily determine location. Unlike
-	// typical axis, y is in the first position because of the way the
-	// cookie crumbles. Don't mess with it!!
-	currentWord += board[y][x]
+	// NOTE: we use x and y here to easily determine location. It might
+	// seem strange, but we use y as the first value since it determines
+	// the "height" (row) of the array, which in real life would be
+	// the y-value.
+	value := board[y][x]
+
+	currentWord += value.character
 
 	// We make sure that the dice code isn't already present in this word
 	if !repeatLetters {
-		for key, value := range DiceMap {
-			if board[x][y] == key && containsInt(DiceCodesUsed, value) {
-				DiceCodesUsed = nil
-				return
-			} else if board[x][y] == key && !containsInt(DiceCodesUsed, value) { // It does contain the letter
-				DiceCodesUsed = append(DiceCodesUsed, value)
-			} else if board[x][y] != key && containsInt(DiceCodesUsed, value) {
-				DiceCodesUsed = nil
-				return
-			}
+		if ContainsInt(diceCodesUsed, value.id) {
+			diceCodesUsed = nil
+			return
+		} else { // It does contain the letter
+			diceCodesUsed = append(diceCodesUsed, value.id)
 		}
 	}
 
@@ -97,42 +93,42 @@ func FindNearby(board [5][5]string, x int, y int, currentWord string, repeatLett
 				wordsFound++
 			}
 		case 2: // Word and future words are invalid
-			DiceCodesUsed = nil
+			diceCodesUsed = nil
 			return
 		}
 	}
 
 	// Can go west
 	if x > 0 {
-		FindNearby(board, x-1, y, currentWord, repeatLetters)
+		FindNearby(board, x-1, y, currentWord, repeatLetters, diceCodesUsed)
 	}
 	// Can go east
 	if x < (width - 1) {
-		FindNearby(board, x+1, y, currentWord, repeatLetters)
+		FindNearby(board, x+1, y, currentWord, repeatLetters, diceCodesUsed)
 	}
 	// Can go north
 	if y > 0 {
-		FindNearby(board, x, y-1, currentWord, repeatLetters)
+		FindNearby(board, x, y-1, currentWord, repeatLetters, diceCodesUsed)
 	}
 	// Can go south
 	if y < (width - 1) {
-		FindNearby(board, x, y+1, currentWord, repeatLetters)
+		FindNearby(board, x, y+1, currentWord, repeatLetters, diceCodesUsed)
 	}
 
 	// Can go southeast
 	if x < (width-1) && y < (width-1) {
-		FindNearby(board, x+1, y+1, currentWord, repeatLetters)
+		FindNearby(board, x+1, y+1, currentWord, repeatLetters, diceCodesUsed)
 	}
 	// Can go southwest
 	if x > 0 && y < (width-1) {
-		FindNearby(board, x-1, y+1, currentWord, repeatLetters)
+		FindNearby(board, x-1, y+1, currentWord, repeatLetters, diceCodesUsed)
 	}
 	// Can go northwest
 	if x > 0 && y > 0 {
-		FindNearby(board, x-1, y-1, currentWord, repeatLetters)
+		FindNearby(board, x-1, y-1, currentWord, repeatLetters, diceCodesUsed)
 	}
 	// Can go northeast
 	if x < (width-1) && y > 0 {
-		FindNearby(board, x+1, y-1, currentWord, repeatLetters)
+		FindNearby(board, x+1, y-1, currentWord, repeatLetters, diceCodesUsed)
 	}
 }
