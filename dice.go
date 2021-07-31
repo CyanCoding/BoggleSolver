@@ -231,34 +231,59 @@ func ManuallySetDice() (dice [5][5]diceValue) {
 	row5Array := strings.Fields(row5)
 
 	dice[0][0].character = row1Array[0]
+	dice[0][0].id = 0
 	dice[0][1].character = row1Array[1]
+	dice[0][1].id = 1
 	dice[0][2].character = row1Array[2]
+	dice[0][2].id = 2
 	dice[0][3].character = row1Array[3]
+	dice[0][3].id = 3
 	dice[0][4].character = row1Array[4]
+	dice[0][4].id = 4
 
 	dice[1][0].character = row2Array[0]
+	dice[1][0].id = 5
 	dice[1][1].character = row2Array[1]
+	dice[1][1].id = 6
 	dice[1][2].character = row2Array[2]
+	dice[1][2].id = 7
 	dice[1][3].character = row2Array[3]
+	dice[1][3].id = 8
 	dice[1][4].character = row2Array[4]
+	dice[1][4].id = 9
 
 	dice[2][0].character = row3Array[0]
+	dice[2][0].id = 10
 	dice[2][1].character = row3Array[1]
+	dice[2][1].id = 11
 	dice[2][2].character = row3Array[2]
+	dice[2][2].id = 12
 	dice[2][3].character = row3Array[3]
+	dice[2][3].id = 13
 	dice[2][4].character = row3Array[4]
+	dice[2][4].id = 14
 
 	dice[3][0].character = row4Array[0]
+	dice[3][0].id = 15
 	dice[3][1].character = row4Array[1]
+	dice[3][1].id = 16
 	dice[3][2].character = row4Array[2]
+	dice[3][2].id = 17
 	dice[3][3].character = row4Array[3]
+	dice[3][3].id = 18
 	dice[3][4].character = row4Array[4]
+	dice[3][4].id = 19
 
 	dice[4][0].character = row5Array[0]
+	dice[4][0].id = 20
 	dice[4][1].character = row5Array[1]
+	dice[4][1].id = 21
 	dice[4][2].character = row5Array[2]
+	dice[4][2].id = 22
 	dice[4][3].character = row5Array[3]
+	dice[4][3].id = 23
 	dice[4][4].character = row5Array[4]
+	dice[4][4].id = 24
 
 	return dice
 }
