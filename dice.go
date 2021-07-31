@@ -197,7 +197,7 @@ func RollDice() (dice [5][5]diceValue) {
 }
 
 func ManuallySetDice() (dice [5][5]diceValue) {
-	fmt.Println("Fill in each of the five rows below with spaces between letters")
+	fmt.Println("Fill in each of the rows below with spaces between letters")
 
 	reader := bufio.NewReader(os.Stdin)
 
@@ -247,8 +247,10 @@ func ManuallySetDice() (dice [5][5]diceValue) {
 	dice[0][2].id = 2
 	dice[0][3].character = row1Array[3]
 	dice[0][3].id = 3
-	dice[0][4].character = row1Array[4]
-	dice[0][4].id = 4
+	if width == 5 {
+		dice[0][4].character = row1Array[4]
+		dice[0][4].id = 4
+	}
 
 	dice[1][0].character = row2Array[0]
 	dice[1][0].id = 5
@@ -258,8 +260,10 @@ func ManuallySetDice() (dice [5][5]diceValue) {
 	dice[1][2].id = 7
 	dice[1][3].character = row2Array[3]
 	dice[1][3].id = 8
-	dice[1][4].character = row2Array[4]
-	dice[1][4].id = 9
+	if width == 5 {
+		dice[1][4].character = row2Array[4]
+		dice[1][4].id = 9
+	}
 
 	dice[2][0].character = row3Array[0]
 	dice[2][0].id = 10
@@ -269,8 +273,10 @@ func ManuallySetDice() (dice [5][5]diceValue) {
 	dice[2][2].id = 12
 	dice[2][3].character = row3Array[3]
 	dice[2][3].id = 13
-	dice[2][4].character = row3Array[4]
-	dice[2][4].id = 14
+	if width == 5 {
+		dice[2][4].character = row3Array[4]
+		dice[2][4].id = 14
+	}
 
 	dice[3][0].character = row4Array[0]
 	dice[3][0].id = 15
@@ -280,19 +286,10 @@ func ManuallySetDice() (dice [5][5]diceValue) {
 	dice[3][2].id = 17
 	dice[3][3].character = row4Array[3]
 	dice[3][3].id = 18
-	dice[3][4].character = row4Array[4]
-	dice[3][4].id = 19
-
-	dice[4][0].character = " "
-	dice[4][0].id = 20
-	dice[4][1].character = " "
-	dice[4][1].id = 21
-	dice[4][2].character = " "
-	dice[4][2].id = 22
-	dice[4][3].character = " "
-	dice[4][3].id = 23
-	dice[4][4].character = " "
-	dice[4][4].id = 24
+	if width == 5 {
+		dice[3][4].character = row4Array[4]
+		dice[3][4].id = 19
+	}
 
 	if width == 5 {
 		dice[4][0].character = row5Array[0]
