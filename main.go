@@ -120,8 +120,7 @@ func main() {
 	wordsFoundList = make([]string, 0)
 
 	if action == 3 {
-		// dice = ManuallySetDice()
-		// TODO: Bring back manually setting dice feature
+		dice = ManuallySetDice()
 		fmt.Println(ColorRed + "This feature is not ready yet!")
 	} else if action == 1 {
 		fmt.Println(ColorRed + "This feature is not ready yet!")
