@@ -133,27 +133,30 @@ func main() {
 	s, _ = gospinner.NewSpinner(gospinner.Dots2)
 	s.Start(ColorCyan + "Finding matches (0% • 0)...")
 
+	// This is the actual for loop that runs the program
 	for i := 0; i < width; i++ {
 		for j := 0; j < width; j++ {
-			FindNearby(dice, i, j, "", true, nil)
+			FindNearby(dice, i, j, "", useRepeats, nil)
 			percentDone += 100 / (width * width)
 		}
 	}
 	s.SetMessage(ColorGreen + "Found all matches!")
 	s.Succeed()
 
+	// Reports all of the words when we're done
 	for _, a := range wordsFoundList {
 		fmt.Println(a)
 	}
 
-	fmt.Println(ColorPurple+"Ran", humanize.Comma(searches), "times and tested",
-		humanize.Comma(wordsChecked), "words")
-
+	// Count the letters
 	var letterCount int64
 	for _, a := range wordsFoundList {
 		letterCount += int64(len(a))
 	}
 
+	// Give the user statistics
+	fmt.Println(ColorPurple+"Ran", humanize.Comma(searches), "times and tested",
+		humanize.Comma(wordsChecked), "words")
 	fmt.Println("That's", humanize.Comma(int64(len(wordsFoundList))), "words and",
 		humanize.Comma(letterCount), "points!")
 }
