@@ -121,7 +121,6 @@ func main() {
 
 	if action == 3 {
 		dice = ManuallySetDice()
-		fmt.Println(ColorRed + "This feature is not ready yet!")
 	} else if action == 1 {
 		fmt.Println(ColorRed + "This feature is not ready yet!")
 	}
