@@ -21,7 +21,7 @@ const ColorCyan = "\033[36m"
 
 // oxford.txt contains words you can find in a dictionary (valid boggle words)
 // all-english.txt contains every english word (might not be in a dictionary)
-var wordsFile string
+var wordsFile string = "oxford.txt"
 
 var wordsFound int
 var searches int64
@@ -78,17 +78,29 @@ func main() {
 	fmt.Println(ColorPurple + "Please pick your dictionary")
 	fmt.Println("(1) Only dictionary words, (2) all English words")
 	fmt.Print(ColorYellow + "Dictionary > ")
-	var dictionary int = 0
+	var dictionary int = 1
 	fmt.Scanln(&dictionary)
 	fmt.Println()
 
-	if dictionary == 1 {
-		wordsFile = "oxford.txt"
-	} else if dictionary == 2 {
+	if dictionary == 2 {
 		wordsFile = "all-english.txt"
-	} else {
+	} else if dictionary != 1 {
 		fmt.Println(ColorRed + "Invalid response! Defaulting to dictionary")
-		wordsFile = "dictionary.txt"
+	}
+
+	fmt.Println()
+	fmt.Println(ColorPurple + "Please pick an option")
+	fmt.Println("(1) Use repeat letters, (2) no repeat letters")
+	fmt.Print(ColorYellow + "Option > ")
+	var option int = 0
+	var useRepeats bool = true
+	fmt.Scanln(&option)
+	fmt.Println()
+
+	if option == 2 {
+		useRepeats = false
+	} else if option != 1 {
+		fmt.Println(ColorRed + "Invalid response! Defaulting to yes for repeat letters")
 	}
 
 	var group sync.WaitGroup
