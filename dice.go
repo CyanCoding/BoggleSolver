@@ -213,8 +213,13 @@ func ManuallySetDice() (dice [5][5]diceValue) {
 	fmt.Print("(4) > ")
 	row4, _ := reader.ReadString('\n')
 
-	fmt.Print("(5) > ")
-	row5, _ := reader.ReadString('\n')
+	var row5 string
+	var row5Array []string
+
+	if width == 5 {
+		fmt.Print("(5) > ")
+		row5, _ = reader.ReadString('\n')
+	}
 
 	fmt.Println()
 
@@ -222,13 +227,17 @@ func ManuallySetDice() (dice [5][5]diceValue) {
 	row2 = strings.TrimSuffix(row2, "\n")
 	row3 = strings.TrimSuffix(row3, "\n")
 	row4 = strings.TrimSuffix(row4, "\n")
-	row5 = strings.TrimSuffix(row5, "\n")
+	if width == 5 {
+		row5 = strings.TrimSuffix(row5, "\n")
+	}
 
 	row1Array := strings.Fields(row1)
 	row2Array := strings.Fields(row2)
 	row3Array := strings.Fields(row3)
 	row4Array := strings.Fields(row4)
-	row5Array := strings.Fields(row5)
+	if width == 5 {
+		row5Array = strings.Fields(row5)
+	}
 
 	dice[0][0].character = row1Array[0]
 	dice[0][0].id = 0
@@ -274,16 +283,18 @@ func ManuallySetDice() (dice [5][5]diceValue) {
 	dice[3][4].character = row4Array[4]
 	dice[3][4].id = 19
 
-	dice[4][0].character = row5Array[0]
-	dice[4][0].id = 20
-	dice[4][1].character = row5Array[1]
-	dice[4][1].id = 21
-	dice[4][2].character = row5Array[2]
-	dice[4][2].id = 22
-	dice[4][3].character = row5Array[3]
-	dice[4][3].id = 23
-	dice[4][4].character = row5Array[4]
-	dice[4][4].id = 24
+	if width == 5 {
+		dice[4][0].character = row5Array[0]
+		dice[4][0].id = 20
+		dice[4][1].character = row5Array[1]
+		dice[4][1].id = 21
+		dice[4][2].character = row5Array[2]
+		dice[4][2].id = 22
+		dice[4][3].character = row5Array[3]
+		dice[4][3].id = 23
+		dice[4][4].character = row5Array[4]
+		dice[4][4].id = 24
+	}
 
 	return dice
 }
