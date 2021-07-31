@@ -72,8 +72,6 @@ func main() {
 		width = 4
 	}
 
-	dice := RollDice()
-
 	fmt.Println()
 	fmt.Println(ColorPurple + "Please pick your dictionary")
 	fmt.Println("(1) Only dictionary words, (2) all English words")
@@ -105,9 +103,14 @@ func main() {
 
 	var group sync.WaitGroup
 
+	var dice [5][5]diceValue
+
 	group.Add(1)
 	go func() {
 		words = ReadWordsFile()
+		if action != 3 {
+			dice = RollDice()
+		}
 		defer group.Done()
 	}()
 
@@ -116,15 +119,15 @@ func main() {
 		fmt.Println(ColorRed + "\nYou did not enter a valid number. Defaulting to 2")
 	}
 
-	group.Wait() // Make sure the word compilation has finished
-	wordsFoundList = make([]string, 0)
-
 	if action == 3 {
 		dice = ManuallySetDice()
 		fmt.Println(ColorRed + "This feature is not ready yet!")
 	} else if action == 1 {
 		fmt.Println(ColorRed + "This feature is not ready yet!")
 	}
+
+	group.Wait() // Make sure the word compilation has finished
+	wordsFoundList = make([]string, 0)
 
 	fmt.Println(ColorPurple + "Below is the board")
 	fmt.Println()
