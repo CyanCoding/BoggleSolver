@@ -283,6 +283,17 @@ func ManuallySetDice() (dice [5][5]diceValue) {
 	dice[3][4].character = row4Array[4]
 	dice[3][4].id = 19
 
+	dice[4][0].character = " "
+	dice[4][0].id = 20
+	dice[4][1].character = " "
+	dice[4][1].id = 21
+	dice[4][2].character = " "
+	dice[4][2].id = 22
+	dice[4][3].character = " "
+	dice[4][3].id = 23
+	dice[4][4].character = " "
+	dice[4][4].id = 24
+
 	if width == 5 {
 		dice[4][0].character = row5Array[0]
 		dice[4][0].id = 20
