@@ -6,6 +6,7 @@ require (
 	github.com/Masterminds/semver v1.5.0 // indirect
 	github.com/fatih/color v1.12.0 // indirect
 	github.com/go-bindata/go-bindata v3.1.2+incompatible // indirect
+	github.com/go-vgo/robotgo v0.99.0 // indirect
 	github.com/kbinani/screenshot v0.0.0-20210720154843-7d3a670d8329 // indirect
 	github.com/konsorten/go-windows-terminal-sequences v1.0.3 // indirect
 	github.com/leaanthony/slicer v1.5.0 // indirect

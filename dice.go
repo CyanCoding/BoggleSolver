@@ -196,6 +196,63 @@ func RollDice() (dice [5][5]diceValue) {
 	return
 }
 
+func SetDiceFromSpaces(s string) (dice [5][5]diceValue, success bool) {
+	if s == "" {
+		return dice, false
+	}
+
+	split := strings.Split(s, "\n")
+
+	row1 := strings.TrimSuffix(split[0], "\n")
+	row2 := strings.TrimSuffix(split[1], "\n")
+	row3 := strings.TrimSuffix(split[2], "\n")
+	row4 := strings.TrimSuffix(split[3], "\n")
+
+	row1Array := strings.Fields(row1)
+	row2Array := strings.Fields(row2)
+	row3Array := strings.Fields(row3)
+	row4Array := strings.Fields(row4)
+
+	dice[0][0].character = row1Array[0]
+	dice[0][0].id = 0
+	dice[0][1].character = row1Array[1]
+	dice[0][1].id = 1
+	dice[0][2].character = row1Array[2]
+	dice[0][2].id = 2
+	dice[0][3].character = row1Array[3]
+	dice[0][3].id = 3
+
+	dice[1][0].character = row2Array[0]
+	dice[1][0].id = 5
+	dice[1][1].character = row2Array[1]
+	dice[1][1].id = 6
+	dice[1][2].character = row2Array[2]
+	dice[1][2].id = 7
+	dice[1][3].character = row2Array[3]
+	dice[1][3].id = 8
+
+	dice[2][0].character = row3Array[0]
+	dice[2][0].id = 10
+	dice[2][1].character = row3Array[1]
+	dice[2][1].id = 11
+	dice[2][2].character = row3Array[2]
+	dice[2][2].id = 12
+	dice[2][3].character = row3Array[3]
+	dice[2][3].id = 13
+
+	dice[3][0].character = row4Array[0]
+	dice[3][0].id = 15
+	dice[3][1].character = row4Array[1]
+	dice[3][1].id = 16
+	dice[3][2].character = row4Array[2]
+	dice[3][2].id = 17
+	dice[3][3].character = row4Array[3]
+	dice[3][3].id = 18
+
+	return dice, true
+
+}
+
 func ManuallySetDice() (dice [5][5]diceValue) {
 	fmt.Println(ColorPurple + "Fill in each of the rows below with spaces between letters")
 

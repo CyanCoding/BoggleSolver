@@ -7,7 +7,6 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/otiai10/gosseract/v2"
 	"github.com/slok/gospinner"
 )
 
@@ -50,34 +49,29 @@ func ReadWordsFile() []string {
 }
 
 func main() {
-	client := gosseract.NewClient()
-	defer client.Close()
-	client.SetImage("hi.png")
-	text, _ := client.Text()
-	fmt.Println(text)
-	// Hello, World!
-
 	fmt.Println(ColorPurple + "Welcome to the boggle solver/computer version!")
 	fmt.Println("Please choose one of the following")
-	fmt.Println("Solo mode (1), computer solve (2), input board (3)")
+	fmt.Println("Solo mode (1), computer solve (2), input board (3), auto (4)")
 	fmt.Println()
 	fmt.Print(ColorYellow + "Action > ")
 
 	var action int = 2
 	fmt.Scanln(&action)
 
-	fmt.Println()
-	fmt.Println(ColorPurple + "Please pick a board size")
-	fmt.Print(ColorYellow + "(1) 4x4, (2) 5x5 > ")
+	if action != 4 {
+		fmt.Println()
+		fmt.Println(ColorPurple + "Please pick a board size")
+		fmt.Print(ColorYellow + "(1) 4x4, (2) 5x5 > ")
 
-	var boardSize int = 1
-	fmt.Scanln(&boardSize)
+		var boardSize int = 1
+		fmt.Scanln(&boardSize)
 
-	if boardSize == 2 {
-		width = 5
-	} else if boardSize != 1 { // Invalid value
-		fmt.Println(ColorRed + "Invalid response! Defaulting to 4x4")
-		width = 4
+		if boardSize == 2 {
+			width = 5
+		} else if boardSize != 1 { // Invalid value
+			fmt.Println(ColorRed + "Invalid response! Defaulting to 4x4")
+			width = 4
+		}
 	}
 
 	fmt.Println()
@@ -122,13 +116,20 @@ func main() {
 		defer group.Done()
 	}()
 
-	if action < 1 || action > 3 { // Action is not valid
+	if action < 1 || action > 4 { // Action is not valid
 		action = 2
 		fmt.Println(ColorRed + "\nYou did not enter a valid number. Defaulting to 2")
 	}
 
 	if action == 3 {
 		dice = ManuallySetDice()
+	} else if action == 4 {
+		success := false
+		dice, success = SetDiceFromSpaces(GetText())
+		if !success {
+			return
+		}
+		width = 4
 	} else if action == 1 {
 		fmt.Println(ColorRed + "This feature is not ready yet!")
 	}
