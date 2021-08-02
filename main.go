@@ -7,6 +7,7 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/otiai10/gosseract/v2"
 	"github.com/slok/gospinner"
 )
 
@@ -49,6 +50,13 @@ func ReadWordsFile() []string {
 }
 
 func main() {
+	client := gosseract.NewClient()
+	defer client.Close()
+	client.SetImage("hi.png")
+	text, _ := client.Text()
+	fmt.Println(text)
+	// Hello, World!
+
 	fmt.Println(ColorPurple + "Welcome to the boggle solver/computer version!")
 	fmt.Println("Please choose one of the following")
 	fmt.Println("Solo mode (1), computer solve (2), input board (3)")

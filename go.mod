@@ -10,6 +10,9 @@ require (
 	github.com/leaanthony/slicer v1.5.0 // indirect
 	github.com/mattn/go-isatty v0.0.13 // indirect
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d // indirect
+	github.com/otiai10/gosseract v2.2.1+incompatible // indirect
+	github.com/otiai10/gosseract/v2 v2.3.1 // indirect
+	github.com/otiai10/mint v1.3.2 // indirect
 	github.com/pkg/browser v0.0.0-20210706143420-7d21f8c997e2 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
