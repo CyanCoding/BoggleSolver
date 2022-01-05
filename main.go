@@ -83,7 +83,7 @@ func main() {
 	if dictionary == 2 {
 		wordsFile = "all-english.txt"
 	} else if dictionary != 1 {
-		fmt.Println(ColorRed + "Invalid response! Defaulting to dictionary")
+		fmt.Println(ColorRed + "Invalid response! Defaulting to oxford dictionary")
 	}
 
 	fmt.Println()
