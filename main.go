@@ -11,11 +11,13 @@ import (
 )
 
 // Colors
-const ColorRed = "\033[31m"
-const ColorGreen = "\033[32m"
-const ColorYellow = "\033[33m"
-const ColorPurple = "\033[35m"
-const ColorCyan = "\033[36m"
+const (
+	ColorRed    = "\033[31m"
+	ColorGreen  = "\033[32m"
+	ColorYellow = "\033[33m"
+	ColorPurple = "\033[35m"
+	ColorCyan   = "\033[36m"
+)
 
 // oxford.txt contains words you can find in a dictionary (valid boggle words)
 // all-english.txt contains every english word, like company names (might not be in a dictionary)
