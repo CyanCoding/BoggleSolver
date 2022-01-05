@@ -26,7 +26,7 @@ var wordsFile string = "oxford.txt"
 var wordsFound int
 var searches int64
 var wordsChecked int64
-var words []string // Word list (about 436k)
+var words []string // Word list (about 38K items depending on the dictionary)
 var wordsFoundList []string
 
 var s *gospinner.Spinner
