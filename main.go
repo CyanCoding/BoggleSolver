@@ -21,6 +21,7 @@ const (
 	version = 1.3
 )
 
+// wordsFile is the relative path to the dictionary in use.
 // oxford.txt contains words you can find in a dictionary (valid boggle words)
 // all-english.txt contains every english word, like company names (might not be in a dictionary)
 var wordsFile string = "oxford.txt"
@@ -31,8 +32,8 @@ var wordsChecked int64
 var words []string // Word list (about 38K items depending on the dictionary)
 var wordsFoundList []string
 
+// Used for the progress bar
 var s *gospinner.Spinner
-
 var percentDone int
 
 var width int = 4 // 4 or 5 for 4x4/5x5
