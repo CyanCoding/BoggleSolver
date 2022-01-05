@@ -17,6 +17,8 @@ const (
 	ColorYellow = "\033[33m"
 	ColorPurple = "\033[35m"
 	ColorCyan   = "\033[36m"
+
+	version = 1.3
 )
 
 // oxford.txt contains words you can find in a dictionary (valid boggle words)
@@ -66,7 +68,8 @@ func pickDictionary() {
 }
 
 func main() {
-	fmt.Println(ColorPurple + "Welcome to the boggle solver/computer version!")
+	fmt.Println(ColorPurple + "Welcome to the boggle solver/computer version by CyanCoding!")
+	fmt.Println("Version:", version)
 	fmt.Println("Please choose one of the following")
 	fmt.Println("Solo mode (1), computer solve (2), input board (3)")
 	fmt.Println()
