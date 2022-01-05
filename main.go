@@ -48,6 +48,23 @@ func ReadWordsFile() []string {
 	return words
 }
 
+// pickDictionary prompts the user and fills in wordsFile
+func pickDictionary() {
+	fmt.Println()
+	fmt.Println(ColorPurple + "Please pick your dictionary")
+	fmt.Println("(1) Only dictionary words, (2) all English words")
+	fmt.Print(ColorYellow + "Dictionary > ")
+	var dictionary int = 1
+	fmt.Scanln(&dictionary)
+	fmt.Println()
+
+	if dictionary == 2 {
+		wordsFile = "all-english.txt"
+	} else if dictionary != 1 {
+		fmt.Println(ColorRed + "Invalid response! Defaulting to oxford dictionary")
+	}
+}
+
 func main() {
 	fmt.Println(ColorPurple + "Welcome to the boggle solver/computer version!")
 	fmt.Println("Please choose one of the following")
@@ -72,19 +89,7 @@ func main() {
 		width = 4
 	}
 
-	fmt.Println()
-	fmt.Println(ColorPurple + "Please pick your dictionary")
-	fmt.Println("(1) Only dictionary words, (2) all English words")
-	fmt.Print(ColorYellow + "Dictionary > ")
-	var dictionary int = 1
-	fmt.Scanln(&dictionary)
-	fmt.Println()
-
-	if dictionary == 2 {
-		wordsFile = "all-english.txt"
-	} else if dictionary != 1 {
-		fmt.Println(ColorRed + "Invalid response! Defaulting to oxford dictionary")
-	}
+	pickDictionary()
 
 	fmt.Println()
 	fmt.Println(ColorPurple + "Please pick an option")
