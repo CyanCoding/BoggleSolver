@@ -11,16 +11,14 @@ import (
 )
 
 // Colors
-const ColorReset = "\033[0m"
 const ColorRed = "\033[31m"
 const ColorGreen = "\033[32m"
 const ColorYellow = "\033[33m"
-const ColorBlue = "\033[34m"
 const ColorPurple = "\033[35m"
 const ColorCyan = "\033[36m"
 
 // oxford.txt contains words you can find in a dictionary (valid boggle words)
-// all-english.txt contains every english word (might not be in a dictionary)
+// all-english.txt contains every english word, like company names (might not be in a dictionary)
 var wordsFile string = "oxford.txt"
 
 var wordsFound int
