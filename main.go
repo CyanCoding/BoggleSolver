@@ -37,7 +37,8 @@ var percentDone int
 
 var width int = 4 // 4 or 5 for 4x4/5x5
 
-func ReadWordsFile() []string {
+// readWordsFile takes wordsFile and reads line by line into words[]
+func readWordsFile() []string {
 	byteData, err := ioutil.ReadFile(wordsFile)
 
 	if err != nil {
@@ -115,7 +116,7 @@ func main() {
 
 	group.Add(1)
 	go func() {
-		words = ReadWordsFile()
+		words = readWordsFile()
 		if action != 3 {
 			dice = RollDice()
 		}
